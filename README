@@ -1,0 +1,48 @@
+
+Perl Necklace, v0.3
+by Jonathan Leto <jonathan@leto.net>
+
+--
+Read INSTALL for installation instructions
+
+Background:
+
+	I love perl, but I don't love that it doesn't have many sitewide security
+features builtin. So I wrote Perl Necklace, to scratch an itch, and to let me 
+sleep a bit better knowing that I have one more weapon in my anti-script-kiddie arsenal.
+
+How it works:
+
+	The chroot feature doesn't chroot perl, it justs chroots the script that is
+running. So the only thing that need to exist in the chrooted environment is
+the /usr/lib/perl5 directory (where all the modules are installed). You may also
+want a /dev/log in there to use syslogd. 
+
+	If FIX_PWD is set, and you have created symlinks so that the new path
+in the chrooted evironment is the same as the old one, then scripts can continue
+to use relative paths when open/manipulating files. If you don't set FIX_PWD, all 
+scripts that use relative paths will brake because when chrooting, you must chdir
+to the new root directory.
+
+	Fiddle with the config.h, it is easy.
+
+Note:
+	Keep a backup of your old perl, like /usr/bin/realperl or something. Don't
+	say I didn't warn you.
+
+
+Requirements:
+	Perl 5.005
+
+Enhancements:
+	If you have a patch/bugfix/suggestion, email me, I want to make Perl Necklace 
+as versatile as possible.
+
+Tested Environments:
+	Redhat Linux 6.2 2.2.14 x86 , perl 5.005_03
+ 	FreeBSD 3.4-RELEASE x86 , perl 5.005_03
+	OpenBSD 2.6 x86,  5.005_03
+
+Doesn't work on: 
+	IRIX 6.5 ( missing headers )
+
